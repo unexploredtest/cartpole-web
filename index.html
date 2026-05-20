@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Training Visualizer</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="container">
+
+    <div class="topbar">
+      <div class="title">Training Agent</div>
+
+      <div class="status">
+        <div class="dot"></div>
+        <span id="statusText">Initializing...</span>
+      </div>
+    </div>
+
+    <div class="canvas-wrapper">
+
+      <!-- Training / general canvas -->
+      <canvas id="canvas"></canvas>
+
+      <div class="overlay"></div>
+    </div>
+
+    <div class="footer">
+      <div>
+        Current Cycle:
+        <span class="step" id="cycleText">0 / 0</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./script.js" type="module"></script>
+
+</body>
+</html>
