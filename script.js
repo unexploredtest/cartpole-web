@@ -11,8 +11,8 @@ setWasmPaths("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.22.0/
   ==========================================
 */
 
-const TOTAL_CYCLES = 8; // <- Change this
-const TRAINING_STEPS = 1000;
+const TOTAL_CYCLES = 20; // <- Change this
+const TRAINING_STEPS = 500;
 const TRAINING_TIME_MS = 2500;
 const VISUALIZATION_TIME_MS = 3500;
 
@@ -38,7 +38,7 @@ const ctx = canvas.getContext("2d");
 let cartpoleEnv = new gymjs.envs.classic_control.CartPoleEnv();
 cartpoleEnv = new gymjs.wrappers.TimeLimit(cartpoleEnv, 2000);
 
-let ppo = new rljs.PPO(cartpoleEnv, {}, {}, true);
+let ppo = new rljs.PPO(cartpoleEnv, {nSteps: TRAINING_STEPS}, {}, true);
 
 
 /*
@@ -124,6 +124,7 @@ async function startTraining() {
     drawLoadingState(cycle);
 
     // Here you can run your actual training logic
+    await delay(100);
     await ppo.learn(1_000, null, false);
 
     /*
@@ -131,12 +132,17 @@ async function startTraining() {
     */
 
     statusText.innerText =
-      `Evaluating performance...`;
+      `Evaluating performance after ${TRAINING_STEPS * cycle} steps...`;
 
     cancelAnimationFrame(animationFrame);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+
+    let originalWidth = canvas.width;
+    let originalHeight = canvas.height;
     await evaluateAgent();
+    canvas.width = originalWidth;
+    canvas.height = originalHeight;
   }
 
   /*
