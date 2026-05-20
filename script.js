@@ -12,7 +12,7 @@ setWasmPaths("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.22.0/
 */
 
 const TOTAL_CYCLES = 20; // <- Change this
-const TRAINING_STEPS = 500;
+const TRAINING_STEPS = 1000;
 const TRAINING_TIME_MS = 2500;
 const VISUALIZATION_TIME_MS = 3500;
 
