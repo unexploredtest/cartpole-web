@@ -118,6 +118,11 @@ async function startTraining() {
     progressFill.style.width =
       `${(cycle / TOTAL_CYCLES) * 100}%`;
 
+    cancelAnimationFrame(animationFrame);
+
+    // Optional loading visual
+    drawLoadingState(cycle);
+
     // Here you can run your actual training logic
     await ppo.learn(1_000, null, false);
 
@@ -128,6 +133,7 @@ async function startTraining() {
     statusText.innerText =
       `Evaluating performance...`;
 
+    cancelAnimationFrame(animationFrame);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     await evaluateAgent();
