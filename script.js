@@ -12,7 +12,7 @@ setWasmPaths("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.22.0/
 */
 
 const TOTAL_CYCLES = 20; // <- Change this
-const TRAINING_STEPS = 1000;
+const TRAINING_STEPS = 5_000;
 const TRAINING_TIME_MS = 2500;
 const VISUALIZATION_TIME_MS = 3500;
 
@@ -38,7 +38,7 @@ const ctx = canvas.getContext("2d");
 let cartpoleEnv = new gymjs.envs.classic_control.CartPoleEnv();
 cartpoleEnv = new gymjs.wrappers.TimeLimit(cartpoleEnv, 2000);
 
-let ppo = new rljs.PPO(cartpoleEnv, {nSteps: TRAINING_STEPS}, {}, true);
+let ppo = new rljs.PPO(cartpoleEnv, {}, {}, true);
 
 
 /*
